@@ -1,68 +1,52 @@
-let bedroomImg;
+let backgroundImg;
+let interactions = 0;
 let message = "";
 let clickedObjects = {
   bed: false,
   desk: false,
   mirror: false
 };
-let interactions = 0;
 
 function preload() {
-  bedroomImg = loadImage("bedroom.png");
+  backgroundImg = loadImage("bedroom.png");
 }
 
 function setup() {
   createCanvas(1000, 1000);
-  textSize(20);
-  textAlign(CENTER);
 }
 
 function draw() {
-  background(bedroomImg);
+  background(255);
+  image(backgroundImg, 0, 0, width, height);
 
-  // Show interaction messages
-  fill(255);
-  text(message, width / 2, height - 50);
+  displayCoordinates();
+  highlightInteractiveZones();
 
-  // Display interaction completion
+  // Display message when clicked
+  fill(0);
+  textSize(20);
+  textAlign(CENTER);
+  text(message, width / 2, 50);
+
+  // Show score
+  textSize(16);
+  textAlign(LEFT);
+  text(`Interactions: ${interactions}/3`, 20, 30);
+
+  // End the game
   if (interactions === 3) {
-    fill(0, 200, 0);
     textSize(30);
-    text("You've explored everything in the room!", width / 2, height / 2);
+    fill(0, 150, 0);
+    textAlign(CENTER);
+    text("You explored everything in your room!", width / 2, height / 2);
   }
+}
 
-  // Display mouse coordinates (for debugging)
+function displayCoordinates() {
   fill(0);
   textSize(12);
-  text(`X: ${mouseX} Y: ${mouseY}`, 50, height - 10);
-
-  // Highlight interactive zones on hover
-  highlightInteractiveZones();
-}
-
-function mousePressed() {
-  // Bed interaction
-  if (isHovering(100, 200, 300, 500) && !clickedObjects.bed) {
-    message = "You sit on the bed. It's comfy!";
-    clickedObjects.bed = true;
-    interactions++;
-  }
-  // Desk interaction
-  else if (isHovering(600, 800, 400, 600) && !clickedObjects.desk) {
-    message = "You find some old notes on the desk.";
-    clickedObjects.desk = true;
-    interactions++;
-  }
-  // Mirror interaction
-  else if (isHovering(850, 950, 200, 400) && !clickedObjects.mirror) {
-    message = "You stare at your reflection. Deep thoughts ensue.";
-    clickedObjects.mirror = true;
-    interactions++;
-  }
-}
-
-function isHovering(x1, x2, y1, y2) {
-  return mouseX >= x1 && mouseX <= x2 && mouseY >= y1 && mouseY <= y2;
+  textAlign(LEFT);
+  text(`X: ${mouseX} Y: ${mouseY}`, 10, height - 10);
 }
 
 function highlightInteractiveZones() {
@@ -70,16 +54,39 @@ function highlightInteractiveZones() {
   stroke(255, 0, 0);
   strokeWeight(2);
 
-  if (isHovering(100, 200, 300, 500)) {
-    rect(100, 300, 100, 200); // Bed area
-    cursor('pointer');
-  } else if (isHovering(600, 800, 400, 600)) {
-    rect(600, 400, 200, 200); // Desk area
-    cursor('pointer');
-  } else if (isHovering(850, 950, 200, 400)) {
-    rect(850, 200, 100, 200); // Mirror area
-    cursor('pointer');
-  } else {
-    cursor('default');
+  // Bed (adjust these coordinates based on your actual image)
+  rect(100, 300, 200, 150);
+
+  // Desk
+  rect(600, 400, 250, 200);
+
+  // Mirror
+  rect(850, 200, 100, 200);
+}
+
+function mousePressed() {
+  // Bed interaction
+  if (isHovering(100, 300, 300, 450) && !clickedObjects.bed) {
+    message = "You sit on the bed. It's surprisingly comfy!";
+    clickedObjects.bed = true;
+    interactions++;
   }
+
+  // Desk interaction
+  else if (isHovering(600, 850, 400, 600) && !clickedObjects.desk) {
+    message = "You find some old notes on the desk.";
+    clickedObjects.desk = true;
+    interactions++;
+  }
+
+  // Mirror interaction
+  else if (isHovering(850, 950, 200, 400) && !clickedObjects.mirror) {
+    message = "You look into the mirror. Looking sharp!";
+    clickedObjects.mirror = true;
+    interactions++;
+  }
+}
+
+function isHovering(x1, x2, y1, y2) {
+  return mouseX >= x1 && mouseX <= x2 && mouseY >= y1 && mouseY <= y2;
 }
