@@ -44,7 +44,7 @@ function draw() {
     textSize(30);
     fill(0, 150, 0);
     textAlign(CENTER);
-    text("You achieved Chill Cat Status!", width / 2, height / 2);
+    text("You explored everything in your room!", width / 2, height / 2);
   }
 }
 
@@ -60,7 +60,7 @@ function highlightInteractiveZones() {
   stroke(255, 0, 0);
   strokeWeight(2);
 
-  // Accurate coordinates based on manual clicking
+  // Example coordinates; adjust these using your displayCoordinates()
   rect(100, 300, 200, 150); // Bed
   rect(600, 400, 250, 200); // TV
   rect(850, 200, 100, 200); // Frame
@@ -72,11 +72,7 @@ function highlightInteractiveZones() {
   rect(520, 600, 50, 100);  // Cat Tail
 }
 
-
-  function mousePressed() {
-    // Log coordinates for easy zone detection
-    console.log(`Clicked at X: ${mouseX}, Y: ${mouseY}`);
-  
+function mousePressed() {
   if (checkInteraction(100, 300, 200, 150, 'bed', "You sit on the bed. It's surprisingly comfy!")) return;
   if (checkInteraction(600, 400, 250, 200, 'tv', "You find something to watch on TV.")) return;
   if (checkInteraction(850, 200, 100, 200, 'frame', "You admire the framed picture.")) return;
