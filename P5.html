@@ -3,114 +3,121 @@
   <head>
     <meta charset="UTF-8" />
     <title>Chill Cat Simulator</title>
-    <script src="p5.js"></script>
-    <script src="myGame.js"></script>
+    <script src="p5.js" type="text/javascript"></script>
+    <script src="myGame.js" type="text/javascript"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Roboto&display=swap" rel="stylesheet">
     <style>
-      body {
+      html, body {
+        height: 100%;
         margin: 0;
+        padding: 0;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        background-color: #e0f7fa;
+      }
+
+      #title {
+        font-family: 'Press Start 2P', cursive;
+        color: #ff9900;
+        text-shadow: 2px 2px 5px #000;
+        margin-top: 40px;
+        font-size: 2.5em;
+        text-align: center;
+      }
+
+      #gameContainer {
         display: flex;
         justify-content: center;
         align-items: center;
-        height: 100vh;
-        background-color: #f0f0f0;
-        font-family: 'Arial', sans-serif;
+        width: 800px;
+        height: 800px;
+        border: 5px solid #333;
+        background-color: #ffffff;
+        box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
       }
 
-      #menu {
+      #creditsBox {
+        width: 70%;
+        max-width: 700px;
+        margin: 20px 0;
+        padding: 15px;
+        background-color: #000;
+        color: #fff;
+        font-family: 'Roboto', sans-serif;
         text-align: center;
-        background: white;
-        padding: 30px;
-        border-radius: 20px;
-        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+        line-height: 1.5;
+        border: 2px solid #6c63ff;
+        box-shadow: 0 0 10px rgba(108, 99, 255, 0.5);
       }
 
-      h1 {
-        font-size: 2.5rem;
-        color: #333;
+      #creditsBox a {
+        color: #ffa500;
+        text-decoration: none;
+      }
+      #creditsBox a:hover {
+        text-decoration: underline;
       }
 
-      button {
-        margin: 10px;
-        padding: 15px 30px;
-        font-size: 1rem;
-        border: none;
-        border-radius: 10px;
+      .card {
+        width: 70%;
+        max-width: 700px;
+        margin: 15px 0;
+        background-color: #000;
+        color: #fff;
+        border: 2px solid #6c63ff;
+        box-shadow: 0 0 10px rgba(108, 99, 255, 0.5);
+      }
+
+      .card-header {
+        padding: 10px;
+        font-weight: bold;
         cursor: pointer;
-        background-color: #4caf50;
-        color: white;
-        transition: background 0.3s ease;
-      }
-
-      button:hover {
-        background-color: #45a049;
-      }
-
-      #game-container {
-        display: none;
-      }
-
-      canvas {
-        border: 2px solid black;
-        border-radius: 10px;
-      }
-
-      #howToPlayModal {
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background: rgba(0, 0, 0, 0.5);
-        display: none;
-        justify-content: center;
-        align-items: center;
-      }
-
-      #howToPlayContent {
-        background: white;
-        padding: 20px;
-        border-radius: 15px;
+        background-color: #6c63ff;
+        color: #ffff00;
         text-align: center;
-        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+        border-bottom: 2px solid #ffcc00;
+      }
+
+      .card-content {
+        padding: 15px;
+        display: none;
       }
     </style>
   </head>
+
   <body>
-    <div id="menu">
-      <h1>🐾 Chill Cat Simulator 🐾</h1>
-      <button onclick="startGame()">Click Here to Play</button>
-      <button onclick="showHowToPlay()">How to Play</button>
+    <div id="title">🐾 Chill Cat Simulator 🐾</div>
+
+    <div id="gameContainer">
+      <!-- P5.js Canvas will be inserted here automatically -->
     </div>
 
-    <div id="game-container">
-      <!-- P5.js Canvas will be auto-inserted here -->
+    <div id="creditsBox">
+      Created by [Your Name] • Powered by P5.js<br />
+      Inspired by relaxing vibes and curious cats 🐱
     </div>
 
-    <div id="howToPlayModal">
-      <div id="howToPlayContent">
-        <h2>How to Play</h2>
-        <p>
-          Click on all the interactive elements in the room to help the cat
-          reach ultimate chill status. Each object brings the cat closer to
-          total relaxation.
-        </p>
-        <button onclick="closeHowToPlay()">Got it!</button>
+    <div class="card">
+      <div class="card-header" onclick="toggleCardContent('howToPlayContent')">How to Play</div>
+      <div class="card-content" id="howToPlayContent">
+        Click on interactive objects in the room to help the cat chill out. Each interaction brings your furry friend closer to ultimate relaxation.
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-header" onclick="toggleCardContent('gameTipsContent')">Game Tips</div>
+      <div class="card-content" id="gameTipsContent">
+        💤 Take your time and explore each item.<br />
+        🎯 Some objects may have hidden surprises.<br />
+        🎵 The calmer your cat gets, the better the vibe!
       </div>
     </div>
 
     <script>
-      function startGame() {
-        document.getElementById('menu').style.display = 'none';
-        document.getElementById('game-container').style.display = 'block';
-        new p5(); // Initializes the p5.js sketch
-      }
-
-      function showHowToPlay() {
-        document.getElementById('howToPlayModal').style.display = 'flex';
-      }
-
-      function closeHowToPlay() {
-        document.getElementById('howToPlayModal').style.display = 'none';
+      function toggleCardContent(contentId) {
+        const content = document.getElementById(contentId);
+        content.style.display = content.style.display === "block" ? "none" : "block";
       }
     </script>
   </body>
