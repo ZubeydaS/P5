@@ -58,7 +58,7 @@ function displayCoordinates() {
   textAlign(LEFT);
   text(`X: ${mouseX} Y: ${mouseY}`, 10, height - 10);
 }
-
+/*
 function highlightInteractiveZones() {
   noFill();
   stroke(255, 0, 0);
@@ -75,6 +75,7 @@ function highlightInteractiveZones() {
   rect(500, 500, 100, 100); // Cat
   rect(520, 600, 50, 100);  // Cat Tail
 }
+  */
 /*
 function mousePressed() {
   if (checkInteraction(100, 300, 200, 150, 'bed', "You sit on the bed. It's surprisingly comfy!")) return;
