@@ -61,27 +61,27 @@ function highlightInteractiveZones() {
   strokeWeight(2);
 
   // Example coordinates; adjust these using your displayCoordinates()
-  rect(100, 300, 200, 150); // Bed
-  rect(600, 400, 250, 200); // TV
-  rect(850, 200, 100, 200); // Frame
-  rect(300, 600, 300, 100); // Carpet
-  rect(700, 700, 100, 200); // Scratch Post
-  rect(200, 800, 100, 100); // Toys
-  rect(150, 350, 150, 100); // Pillow
-  rect(500, 500, 100, 100); // Cat
-  rect(520, 600, 50, 100);  // Cat Tail
+  rect(436, 520, 271, 174); // Bed
+  rect(3.44, 328, 199.56, 420); // TV
+  rect(263, 339, 97, 78); // Frame
+  rect(415, 635, 187, 335); // Carpet
+  rect(21.44, 731.61, 227.56, 114.39); // Scratch Post
+  rect(822, 710, 60, 283); // Toys
+  rect(800, 310, 172, 128); // Pillow
+  rect(634, 316, 288, 221); // Cat
+  rect(734, 549, 42, 134);  // Cat Tail
 }
 
 function mousePressed() {
-  if (checkInteraction(100, 300, 200, 150, 'bed', "You sit on the bed. It's surprisingly comfy!")) return;
-  if (checkInteraction(600, 400, 250, 200, 'tv', "You find something to watch on TV.")) return;
-  if (checkInteraction(850, 200, 100, 200, 'frame', "You admire the framed picture.")) return;
-  if (checkInteraction(300, 600, 300, 100, 'carpet', "The carpet... perfect to ruin.")) return;
-  if (checkInteraction(700, 700, 100, 200, 'scratch_post', "I'd rather scratch the bed.")) return;
-  if (checkInteraction(200, 800, 100, 100, 'toys', "My favorite toys neatly piled :).")) return;
-  if (checkInteraction(150, 350, 150, 100, 'pillow', "The pillow looks fluffy.")) return;
-  if (checkInteraction(500, 500, 100, 100, 'cat', "Hey!")) return;
-  if (checkInteraction(520, 600, 50, 100, 'cat_tail', "That tickes >:(")) return;
+  if (checkInteraction(436, 520, 271, 174, 'bed', "You sit on the bed. It's surprisingly comfy!")) return;
+  if (checkInteraction(3.44, 328, 199.56, 420, 'tv', "You find something to watch on TV.")) return;
+  if (checkInteraction(263, 339, 97, 78, 'frame', "You admire the framed picture.")) return;
+  if (checkInteraction(415, 635, 187, 335, 'carpet', "The carpet... perfect to ruin.")) return;
+  if (checkInteraction(21.44, 731.61, 227.56, 114.39, 'scratch_post', "I'd rather scratch the bed.")) return;
+  if (checkInteraction(822, 710, 60, 283, 'toys', "My favorite toys neatly piled :).")) return;
+  if (checkInteraction(800, 310, 172, 128, 'pillow', "The pillow looks fluffy.")) return;
+  if (checkInteraction(634, 316, 288, 221, 'cat', "Hey!")) return;
+  if (checkInteraction(734, 549, 42, 134, 'cat_tail', "That tickes >:(")) return;
 }
 
 function checkInteraction(x, y, w, h, objectName, interactionMessage) {
