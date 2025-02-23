@@ -21,10 +21,6 @@ function setup() {
   createCanvas(1000, 1000);
 }
 
-function mousePressed() {
-  console.log(`X: ${mouseX}, Y: ${mouseY}`);
-}
-
 function draw() {
   background(255);
   image(backgroundImg, 0, 0, width, height);
@@ -48,7 +44,7 @@ function draw() {
     textSize(30);
     fill(0, 150, 0);
     textAlign(CENTER);
-    text("You explored everything in your room!", width / 2, height / 2);
+    text("You achieved Chill Cat Status!", width / 2, height / 2);
   }
 }
 
@@ -58,13 +54,13 @@ function displayCoordinates() {
   textAlign(LEFT);
   text(`X: ${mouseX} Y: ${mouseY}`, 10, height - 10);
 }
-/*
+
 function highlightInteractiveZones() {
   noFill();
   stroke(255, 0, 0);
   strokeWeight(2);
 
-  // Example coordinates; adjust these using your displayCoordinates()
+  // Accurate coordinates based on manual clicking
   rect(100, 300, 200, 150); // Bed
   rect(600, 400, 250, 200); // TV
   rect(850, 200, 100, 200); // Frame
@@ -75,9 +71,12 @@ function highlightInteractiveZones() {
   rect(500, 500, 100, 100); // Cat
   rect(520, 600, 50, 100);  // Cat Tail
 }
-  */
-/*
-function mousePressed() {
+
+
+  function mousePressed() {
+    // Log coordinates for easy zone detection
+    console.log(`Clicked at X: ${mouseX}, Y: ${mouseY}`);
+  
   if (checkInteraction(100, 300, 200, 150, 'bed', "You sit on the bed. It's surprisingly comfy!")) return;
   if (checkInteraction(600, 400, 250, 200, 'tv', "You find something to watch on TV.")) return;
   if (checkInteraction(850, 200, 100, 200, 'frame', "You admire the framed picture.")) return;
@@ -88,7 +87,7 @@ function mousePressed() {
   if (checkInteraction(500, 500, 100, 100, 'cat', "Hey!")) return;
   if (checkInteraction(520, 600, 50, 100, 'cat_tail', "That tickes >:(")) return;
 }
-*/
+
 function checkInteraction(x, y, w, h, objectName, interactionMessage) {
   if (isHovering(x, y, w, h) && !clickedObjects[objectName]) {
     message = interactionMessage;
