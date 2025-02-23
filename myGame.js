@@ -44,7 +44,7 @@ function draw() {
     textSize(30);
     fill(0, 150, 0);
     textAlign(CENTER);
-    text("You explored everything in your room!", width / 2, height / 2);
+    text("You explored everything in your room! Kitty is chilled out.", width / 2, height / 2);
   }
 }
 
@@ -64,8 +64,8 @@ function highlightInteractiveZones() {
   rect(401, 518, 314, 135); // Bed
   rect(-31, 272, 227, 226); // TV
   rect(263, 339, 97, 78); // Frame
-  rect(332, 681, 349, 324); // Carpet
-  rect(21.44, 731.61, 227.56, 114.39); // Scratch Post
+  rect(284, 668, 447, 290); // Carpet
+  rect(81, 706, 149, 185); // Scratch Post
   rect(794, 714, 145, 267); // Toys
   rect(781, 320, 212, 86); // Pillow
   rect(634, 316, 288, 221); // Cat
@@ -76,8 +76,8 @@ function mousePressed() {
   if (checkInteraction(401, 518, 314, 135, 'bed', "You sit on the bed. It's surprisingly comfy!")) return;
   if (checkInteraction(-31, 272, 227, 226, 'tv', "You find something to watch on TV.")) return;
   if (checkInteraction(263, 339, 97, 78, 'frame', "You admire the framed picture.")) return;
-  if (checkInteraction(332, 681, 349, 324, 'carpet', "The carpet... perfect to ruin.")) return;
-  if (checkInteraction(21.44, 731.61, 227.56, 114.39, 'scratch_post', "I'd rather scratch the bed.")) return;
+  if (checkInteraction(284, 668, 447, 290, 'carpet', "The carpet... perfect to ruin.")) return;
+  if (checkInteraction(81, 706, 149, 185, 'scratch_post', "I'd rather scratch the bed.")) return;
   if (checkInteraction(794, 714, 145, 267, 'toys', "My favorite toys neatly piled :).")) return;
   if (checkInteraction(781, 320, 212, 86, 'pillow', "The pillow looks fluffy.")) return;
   if (checkInteraction(634, 316, 288, 221, 'cat', "Hey!")) return;
