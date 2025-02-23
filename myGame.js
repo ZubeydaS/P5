@@ -21,6 +21,10 @@ function setup() {
   createCanvas(1000, 1000);
 }
 
+function mousePressed() {
+  console.log(`X: ${mouseX}, Y: ${mouseY}`);
+}
+
 function draw() {
   background(255);
   image(backgroundImg, 0, 0, width, height);
