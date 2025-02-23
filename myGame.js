@@ -75,7 +75,7 @@ function highlightInteractiveZones() {
   rect(500, 500, 100, 100); // Cat
   rect(520, 600, 50, 100);  // Cat Tail
 }
-
+/*
 function mousePressed() {
   if (checkInteraction(100, 300, 200, 150, 'bed', "You sit on the bed. It's surprisingly comfy!")) return;
   if (checkInteraction(600, 400, 250, 200, 'tv', "You find something to watch on TV.")) return;
@@ -87,7 +87,7 @@ function mousePressed() {
   if (checkInteraction(500, 500, 100, 100, 'cat', "Hey!")) return;
   if (checkInteraction(520, 600, 50, 100, 'cat_tail', "That tickes >:(")) return;
 }
-
+*/
 function checkInteraction(x, y, w, h, objectName, interactionMessage) {
   if (isHovering(x, y, w, h) && !clickedObjects[objectName]) {
     message = interactionMessage;
