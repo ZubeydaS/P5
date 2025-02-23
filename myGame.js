@@ -1,10 +1,10 @@
 let backgroundImg;
 let interactions = 0;
 let message = "";
-let gameEnded = false; // Track if the game has ended early
+let gameEnded = false;
 let catClicks = 0;
-let tailClicks = 0; // Track tail clicks
-let gameRestarted = false; // Track if the game restarted
+let tailClicks = 0;
+let gameRestarted = false;
 
 let clickedObjects = {
   bed: false,
@@ -33,33 +33,26 @@ function draw() {
   displayCoordinates();
   highlightInteractiveZones();
 
-  // Display message when clicked
   fill(0);
   textSize(20);
   textAlign(CENTER);
   text(message, width / 2, 50);
 
-  // Show score
   textSize(16);
   textAlign(LEFT);
   text(`Interactions: ${interactions}/9`, 20, 30);
 
-  // End the game if petting the cat to sleep
   if (gameEnded) {
     textSize(30);
     fill(0, 150, 0);
     textAlign(CENTER);
     text("You pet the cat to sleep. Early Game Over. 💤", width / 2, height / 2);
-  }
-  // Restart game if cat hisses
-  else if (gameRestarted) {
+  } else if (gameRestarted) {
     textSize(30);
     fill(200, 0, 0);
     textAlign(CENTER);
     text("😾 The cat hissed at you! Restarting the game...", width / 2, height / 2);
-  }
-  // End after exploring everything
-  else if (interactions === 9) {
+  } else if (interactions === 9) {
     textSize(30);
     fill(0, 150, 0);
     textAlign(CENTER);
@@ -91,7 +84,7 @@ function highlightInteractiveZones() {
 }
 
 function mousePressed() {
-  if (gameEnded || gameRestarted) return; // Disable clicks after game ends/restarts
+  if (gameEnded || gameRestarted) return;
 
   if (checkInteraction(401, 518, 314, 135, 'bed', "You sit on the bed. It's surprisingly comfy!")) return;
   if (checkInteraction(-31, 272, 227, 226, 'tv', "You find something to watch on TV.")) return;
@@ -100,8 +93,8 @@ function mousePressed() {
   if (checkInteraction(84, 715, 155, 186, 'scratch_post', "I'd rather scratch the bed.")) return;
   if (checkInteraction(794, 714, 145, 267, 'toys', "My favorite toys neatly piled :).")) return;
   if (checkInteraction(781, 320, 212, 86, 'pillow', "The pillow looks fluffy.")) return;
-  if (checkCatInteraction()) return; // Special function for cat
-  if (checkTailInteraction()) return; // Special function for tail
+  if (checkCatInteraction()) return;
+  if (checkTailInteraction()) return;
 }
 
 function checkInteraction(x, y, w, h, objectName, interactionMessage) {
@@ -149,12 +142,12 @@ function checkTailInteraction() {
   }
   return false;
 }
+
 function restartGame() {
   gameRestarted = true;
-  document.getElementById('restartButton').style.display = 'block'; // Show restart button
+  document.getElementById('restartButton').style.display = 'block';
 
   setTimeout(() => {
-    // Reset all game variables
     interactions = 0;
     catClicks = 0;
     tailClicks = 0;
@@ -162,16 +155,13 @@ function restartGame() {
     gameRestarted = false;
     message = "";
 
-    // Reset all clicked objects
     for (let obj in clickedObjects) {
       clickedObjects[obj] = false;
     }
-    document.getElementById('restartButton').style.display = 'none'; // Hide button again
+    document.getElementById('restartButton').style.display = 'none';
   }, 3000);
 }
-
 
 function isHovering(x, y, w, h) {
   return mouseX >= x && mouseX <= x + w && mouseY >= y && mouseY <= y + h;
 }
-

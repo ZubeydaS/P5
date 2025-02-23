@@ -55,6 +55,7 @@
         color: #ffa500;
         text-decoration: none;
       }
+
       #creditsBox a:hover {
         text-decoration: underline;
       }
@@ -89,13 +90,11 @@
   <body>
     <div id="title">🐾 Chill Cat Simulator 🐾</div>
 
-    <div id="gameContainer">
-      <!-- P5.js Canvas will be inserted here automatically -->
-    </div>
+    <div id="gameContainer"></div>
 
     <div id="creditsBox">
       Created by Zubeyda • Powered by P5.js<br />
-      relaxing vibes and a chill cat 🐱
+      Relaxing vibes and a chill cat 🐱
     </div>
 
     <div class="card">
@@ -121,13 +120,15 @@
         const content = document.getElementById(contentId);
         content.style.display = content.style.display === "block" ? "none" : "block";
       }
+
       function restartManually() {
-        restartGame(); // Call your game restart function from p5.js
-        document.getElementById('restartButton').style.display = 'none'; // Hide button after restart
-}
+        restartGame();
+        document.getElementById('restartButton').style.display = 'none';
+      }
     </script>
-        <button id="restartButton" onclick="restartManually()" style="display: none;">
-          Restart Game
-        </button>
+
+    <button id="restartButton" onclick="restartManually()" style="display: none;">
+      Restart Game
+    </button>
   </body>
 </html>
