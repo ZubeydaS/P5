@@ -2,7 +2,7 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <title>Bedroom Click Game</title>
+    <title>Chill Cat Simulator</title>
     <script src="p5.js"></script>
     <script src="myGame.js"></script>
     <style>
@@ -13,16 +13,105 @@
         align-items: center;
         height: 100vh;
         background-color: #f0f0f0;
+        font-family: 'Arial', sans-serif;
+      }
+
+      #menu {
+        text-align: center;
+        background: white;
+        padding: 30px;
+        border-radius: 20px;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+      }
+
+      h1 {
+        font-size: 2.5rem;
+        color: #333;
+      }
+
+      button {
+        margin: 10px;
+        padding: 15px 30px;
+        font-size: 1rem;
+        border: none;
+        border-radius: 10px;
+        cursor: pointer;
+        background-color: #4caf50;
+        color: white;
+        transition: background 0.3s ease;
+      }
+
+      button:hover {
+        background-color: #45a049;
+      }
+
+      #game-container {
+        display: none;
       }
 
       canvas {
         border: 2px solid black;
+        border-radius: 10px;
+      }
+
+      #howToPlayModal {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.5);
+        display: none;
+        justify-content: center;
+        align-items: center;
+      }
+
+      #howToPlayContent {
+        background: white;
+        padding: 20px;
+        border-radius: 15px;
+        text-align: center;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
       }
     </style>
   </head>
   <body>
+    <div id="menu">
+      <h1>🐾 Chill Cat Simulator 🐾</h1>
+      <button onclick="startGame()">Click Here to Play</button>
+      <button onclick="showHowToPlay()">How to Play</button>
+    </div>
+
+    <div id="game-container">
+      <!-- P5.js Canvas will be auto-inserted here -->
+    </div>
+
+    <div id="howToPlayModal">
+      <div id="howToPlayContent">
+        <h2>How to Play</h2>
+        <p>
+          Click on all the interactive elements in the room to help the cat
+          reach ultimate chill status. Each object brings the cat closer to
+          total relaxation.
+        </p>
+        <button onclick="closeHowToPlay()">Got it!</button>
+      </div>
+    </div>
+
     <script>
-      // This will initialize your P5 game
+      function startGame() {
+        document.getElementById('menu').style.display = 'none';
+        document.getElementById('game-container').style.display = 'block';
+        new p5(); // Initializes the p5.js sketch
+      }
+
+      function showHowToPlay() {
+        document.getElementById('howToPlayModal').style.display = 'flex';
+      }
+
+      function closeHowToPlay() {
+        document.getElementById('howToPlayModal').style.display = 'none';
+      }
     </script>
   </body>
 </html>

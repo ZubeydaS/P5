@@ -3,8 +3,14 @@ let interactions = 0;
 let message = "";
 let clickedObjects = {
   bed: false,
-  desk: false,
-  mirror: false
+  tv: false,
+  frame: false,
+  carpet: false,
+  scratch_post: false,
+  toys: false,
+  pillow: false,
+  cat: false,
+  cat_tail: false,
 };
 
 function preload() {
@@ -31,10 +37,10 @@ function draw() {
   // Show score
   textSize(16);
   textAlign(LEFT);
-  text(`Interactions: ${interactions}/3`, 20, 30);
+  text(`Interactions: ${interactions}/9`, 20, 30);
 
   // End the game
-  if (interactions === 3) {
+  if (interactions === 9) {
     textSize(30);
     fill(0, 150, 0);
     textAlign(CENTER);
@@ -54,39 +60,40 @@ function highlightInteractiveZones() {
   stroke(255, 0, 0);
   strokeWeight(2);
 
-  // Bed (adjust these coordinates based on your actual image)
-  rect(100, 300, 200, 150);
-
-  // Desk
-  rect(600, 400, 250, 200);
-
-  // Mirror
-  rect(850, 200, 100, 200);
+  // Example coordinates; adjust these using your displayCoordinates()
+  rect(100, 300, 200, 150); // Bed
+  rect(600, 400, 250, 200); // TV
+  rect(850, 200, 100, 200); // Frame
+  rect(300, 600, 300, 100); // Carpet
+  rect(700, 700, 100, 200); // Scratch Post
+  rect(200, 800, 100, 100); // Toys
+  rect(150, 350, 150, 100); // Pillow
+  rect(500, 500, 100, 100); // Cat
+  rect(520, 600, 50, 100);  // Cat Tail
 }
 
 function mousePressed() {
-  // Bed interaction
-  if (isHovering(100, 300, 300, 450) && !clickedObjects.bed) {
-    message = "You sit on the bed. It's surprisingly comfy!";
-    clickedObjects.bed = true;
-    interactions++;
-  }
-
-  // Desk interaction
-  else if (isHovering(600, 850, 400, 600) && !clickedObjects.desk) {
-    message = "You find some old notes on the desk.";
-    clickedObjects.desk = true;
-    interactions++;
-  }
-
-  // Mirror interaction
-  else if (isHovering(850, 950, 200, 400) && !clickedObjects.mirror) {
-    message = "You look into the mirror. Looking sharp!";
-    clickedObjects.mirror = true;
-    interactions++;
-  }
+  if (checkInteraction(100, 300, 200, 150, 'bed', "You sit on the bed. It's surprisingly comfy!")) return;
+  if (checkInteraction(600, 400, 250, 200, 'tv', "You find something to watch on TV.")) return;
+  if (checkInteraction(850, 200, 100, 200, 'frame', "You admire the framed picture.")) return;
+  if (checkInteraction(300, 600, 300, 100, 'carpet', "The carpet... perfect to ruin.")) return;
+  if (checkInteraction(700, 700, 100, 200, 'scratch_post', "I'd rather scratch the bed.")) return;
+  if (checkInteraction(200, 800, 100, 100, 'toys', "My favorite toys neatly piled :).")) return;
+  if (checkInteraction(150, 350, 150, 100, 'pillow', "The pillow looks fluffy.")) return;
+  if (checkInteraction(500, 500, 100, 100, 'cat', "Hey!")) return;
+  if (checkInteraction(520, 600, 50, 100, 'cat_tail', "That tickes >:(")) return;
 }
 
-function isHovering(x1, x2, y1, y2) {
-  return mouseX >= x1 && mouseX <= x2 && mouseY >= y1 && mouseY <= y2;
+function checkInteraction(x, y, w, h, objectName, interactionMessage) {
+  if (isHovering(x, y, w, h) && !clickedObjects[objectName]) {
+    message = interactionMessage;
+    clickedObjects[objectName] = true;
+    interactions++;
+    return true;
+  }
+  return false;
+}
+
+function isHovering(x, y, w, h) {
+  return mouseX >= x && mouseX <= x + w && mouseY >= y && mouseY <= y + h;
 }
