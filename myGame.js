@@ -19,15 +19,11 @@ let clickedObjects = {
 };
 
 function preload() {
-  backgroundImg = loadImage("bedroom.png", 
-    () => console.log("Image loaded successfully"), 
-    () => console.error("Image failed to load")
-  );
+  backgroundImg = loadImage("bedroom.png");
 }
 
 function setup() {
   createCanvas(1000, 1000);
-  canvas.parent('gameContainer');
 }
 
 function draw() {
@@ -153,7 +149,6 @@ function checkTailInteraction() {
   }
   return false;
 }
-
 function restartGame() {
   gameRestarted = true;
   document.getElementById('restartButton').style.display = 'block'; // Show restart button
@@ -174,6 +169,7 @@ function restartGame() {
     document.getElementById('restartButton').style.display = 'none'; // Hide button again
   }, 3000);
 }
+
 
 function isHovering(x, y, w, h) {
   return mouseX >= x && mouseX <= x + w && mouseY >= y && mouseY <= y + h;
