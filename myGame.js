@@ -19,11 +19,15 @@ let clickedObjects = {
 };
 
 function preload() {
-  backgroundImg = loadImage("bedroom.png");
+  backgroundImg = loadImage("bedroom.png", 
+    () => console.log("Image loaded successfully"), 
+    () => console.error("Image failed to load")
+  );
 }
 
 function setup() {
   createCanvas(1000, 1000);
+  canvas.parent('gameContainer');
 }
 
 function draw() {
