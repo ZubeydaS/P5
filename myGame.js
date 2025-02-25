@@ -29,7 +29,7 @@ function setup() {
 
 function draw() {
   image(backgroundImg, 0, 0, width, height);
-
+  canvas.parent("gameContainer"); 
   displayCoordinates();
   highlightInteractiveZones();
 
