@@ -31,7 +31,7 @@ function draw() {
   background(255);
   image(backgroundImg, 0, 0, width, height);
   displayCoordinates();
-  highlightInteractiveZones();
+  // highlightInteractiveZones();
 
   fill(0);
   textSize(20);
@@ -46,17 +46,17 @@ function draw() {
     textSize(30);
     fill(0, 150, 0);
     textAlign(CENTER);
-    text("You pet the cat to sleep. Early Game Over. 💤", width / 2, height / 2);
+    text("Cat is pet to sleep. Early Game Over. Good job. 💤", width / 2, height / 2);
   } else if (gameRestarted) {
     textSize(30);
     fill(200, 0, 0);
     textAlign(CENTER);
-    text("😾 The cat hissed at you! Restarting the game...", width / 2, height / 2);
+    text("😾 Cat hissed at you! Restarting the game...", width / 2, height / 2);
   } else if (interactions === 9) {
     textSize(30);
     fill(0, 150, 0);
     textAlign(CENTER);
-    text("You explored everything in your room! Kitty is chilled out.", width / 2, height / 2);
+    text("Every object in the room has been explored! Kitty is chilled out 😼.", width / 2, height / 2);
   }
 }
 
@@ -66,7 +66,7 @@ function displayCoordinates() {
   textAlign(LEFT);
   text(`X: ${mouseX} Y: ${mouseY}`, 10, height - 10);
 }
-
+/*
 function highlightInteractiveZones() {
   noFill();
   stroke(255, 0, 0);
@@ -82,17 +82,17 @@ function highlightInteractiveZones() {
   rect(634, 316, 288, 221); // Cat
   rect(734, 549, 42, 134); // Cat Tail
 }
-
+*/
 function mousePressed() {
   if (gameEnded || gameRestarted) return;
 
-  if (checkInteraction(401, 518, 314, 135, 'bed', "You sit on the bed. It's surprisingly comfy!")) return;
-  if (checkInteraction(-31, 272, 227, 226, 'tv', "You find something to watch on TV.")) return;
-  if (checkInteraction(263, 339, 97, 78, 'frame', "You admire the framed picture.")) return;
+  if (checkInteraction(401, 518, 314, 135, 'bed', "The cat sits on the bed. They look so comfy!")) return;
+  if (checkInteraction(-31, 272, 227, 226, 'tv', "The cat finds something to watch on TV.")) return;
+  if (checkInteraction(263, 339, 97, 78, 'frame', "The kitty admires its framed picture.")) return;
   if (checkInteraction(289, 678, 444, 280, 'carpet', "The carpet... perfect to ruin.")) return;
-  if (checkInteraction(84, 715, 155, 186, 'scratch_post', "I'd rather scratch the bed.")) return;
-  if (checkInteraction(794, 714, 145, 267, 'toys', "My favorite toys neatly piled :).")) return;
-  if (checkInteraction(781, 320, 212, 86, 'pillow', "The pillow looks fluffy.")) return;
+  if (checkInteraction(84, 715, 155, 186, 'scratch_post', "The cat would rather scratch the bed.")) return;
+  if (checkInteraction(794, 714, 145, 267, 'toys', "Kitty's favorite toys neatly piled :).")) return;
+  if (checkInteraction(781, 320, 212, 86, 'pillow', "The pillow looks unique.")) return;
   if (checkCatInteraction()) return;
   if (checkTailInteraction()) return;
 }
@@ -111,9 +111,9 @@ function checkCatInteraction() {
   if (isHovering(634, 316, 288, 221)) {
     catClicks++;
     if (catClicks < 5) {
-      message = `You pet the cat. It seems happy (${catClicks}/5).`;
+      message = `The cat seems happy. (${catClicks}/5).`;
     } else if (catClicks === 5) {
-      message = "The cat falls asleep in your lap. You win early! 🐱💤";
+      message = "The cat falls asleep in bed. You win early! 🐱💤";
       gameEnded = true;
     }
     if (!clickedObjects['cat']) {
