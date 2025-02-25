@@ -25,6 +25,7 @@ function preload() {
 function setup() {
   createCanvas(1000, 1000);
   imageMode(CENTER);
+  image(backgroundImg, 0, 0, width, height);
 }
 
 function draw() {
