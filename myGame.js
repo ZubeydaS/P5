@@ -23,13 +23,12 @@ function preload() {
 }
 
 function setup() {
-  createCanvas(1000, 1000);
+  let canvas = createCanvas(1000, 1000);
   canvas.parent("gameContainer"); 
 }
 
 function draw() {
   image(backgroundImg, 0, 0, width, height);
-  canvas.parent("gameContainer"); 
   displayCoordinates();
   highlightInteractiveZones();
 
