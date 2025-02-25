@@ -19,7 +19,7 @@ let clickedObjects = {
 };
 
 function preload() {
-  backgroundImg = loadImage("bedroom.png");
+  backgroundImg = loadImage("mybed/bedroom.png");
 }
 
 function setup() {
