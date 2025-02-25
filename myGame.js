@@ -24,7 +24,7 @@ function preload() {
 
 function setup() {
   createCanvas(1000, 1000);
-  imageMode(CENTER);
+  canvas.parent("gameContainer"); 
 }
 
 function draw() {
