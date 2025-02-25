@@ -28,7 +28,6 @@ function setup() {
 }
 
 function draw() {
-  background(255);
   image(backgroundImg, 0, 0, width, height);
 
   displayCoordinates();
